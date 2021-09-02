@@ -1,0 +1,47 @@
+<div class="container col-8 mx-auto column">
+
+  <div class="mt-3">
+    <h4 class="text-center">URL Shortener</h4>
+        <img
+          src="https://thumbs.dreamstime.com/b/url-vector-color-flat-icon-url-icon-website-design-desktop-envelopment-development-premium-pack-189359209.jpg"
+          class="img-fluid col-5 mx-auto d-block" alt="">
+  </div>
+  
+  <div>
+    <form method="POST" action="/">
+      <div class="form-group form-row px-0 col-md-8 mx-auto justify-content-between">
+        <input type="text" name="URLlink" class="form-control col-9" id="link" placeholder="input URL here" value="{{inputLink}}">
+        <button class="btn btn-success text-center" type="submit">Shorten</button>
+      </div>
+      
+
+      {{#if shortenLink.error}}
+      
+
+        <div class="alert alert-info col-md-8 mx-auto d-flex justify-content-between" role="alert">
+          <span>{{shortenLink.value}}</span>
+        </div>
+
+      {{else}}
+        {{#if shortenLink.value}}
+          <div class="alert alert-info col-md-8 mx-auto d-flex justify-content-between" role="alert">
+            <span class="mr-6 align-buttom">Shorten link is:</span> <code id="shortenLink">{{ shortenLink.value }}</code>
+            <button onclick="copyLink()" class="btn btn-danger ml-2" type="button">Copy</button>
+          </div>
+        {{/if}}
+        
+        
+      {{/if}}
+
+    </form>
+  </div>
+</div>
+
+<script>
+  function copyLink() {
+      let copyText = document.getElementById('shortenLink')
+      
+      navigator.clipboard.writeText(copyText.innerText)
+      alert("Copied the text: " + copyText.innerText)
+    }
+</script>
