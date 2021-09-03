@@ -1,3 +1,5 @@
+const ShortLink = require('./models/linkShortener')
+
 function judgeLink(link) {
   if ((link.length === 0) || (link.includes('https://') == ! true)) {
     return {
@@ -27,7 +29,10 @@ function shortLinkGenerator(link) {
 const helper = {
   shortLinkGenerator: shortLinkGenerator,
   judgeLink: judgeLink
-
 }
+
+// function checkLink (inputLlink) {
+//   if ()
+// }
 
 module.exports = helper
