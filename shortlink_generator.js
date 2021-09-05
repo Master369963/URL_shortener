@@ -1,8 +1,10 @@
+const validUrl = require('valid-url')
+
 function judgeLink(link) {
-  if ((link.length === 0) || (link.includes('https://') ==! true)) {
+  if (!validUrl.isWebUri(link)) {
     return {
       error: true,
-      value:'Please input a valid link.'
+      value: 'Please input a valid link.'
     }
   } else {
     return {
@@ -11,6 +13,7 @@ function judgeLink(link) {
     }
   }
 }
+
 
 function shortLinkGenerator(link) {
   const library = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'

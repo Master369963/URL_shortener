@@ -1,14 +1,16 @@
 # URL Shortener
 
-This website can help to shorten your URL.
+This website make your URL shorter.
 
 ## Features
 
-* Input your URL inside the input column and press **Shorten** button, you will receive a formated shorten link.
+* Input your URL inside the input field and press the **Shorten** button, and the website will validate your URL.
 
-* Click the formated shorten link, it will directly go to the website.
+* If the URL is valid, you will receive a shortered link or receive an error message.
 
-* You can use **Copy** button to copy this link.
+* Click the shortered link, it will directly go to the website.
+
+* You can use the **Copy** button to copy this link.
 
 
 ## Getting Started
@@ -57,6 +59,12 @@ npm run start
 * [Express](https://www.npmjs.com/package/express) - Framework
 
 * [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) - Template Engine
+
+* [body-parser](https://www.npmjs.com/package/body-parser)
+
+* [mongoose](https://www.npmjs.com/package/mongoose)
+
+* [valid-url](https://www.npmjs.com/package/valid-url)
 
 
 

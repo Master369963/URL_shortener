@@ -18,9 +18,9 @@
       
       {{!-- 輸入的連結無效時，會跳出提醒 --}}
       {{#if shortenLinkObj.error}}
-        {{shortenLink}}
+      
         <div class="alert alert-info col-md-8 mx-auto d-flex justify-content-between" role="alert">
-          <span class="text-danger">{{shortenLink}}</span>
+          <span class="text-danger">{{shortenLinkObj.value}}</span>
         </div>
       
       {{!-- 輸入有效的連結 --}}

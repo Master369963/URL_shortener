@@ -23,13 +23,17 @@ router.post('/', (req, res) => {
       } else {
         const shortenLinkObj = helper.judgeLink(inputLink)
         const shortenCode = shortenLinkObj.value
-        shortenLinkObj.value = hostName + shortenLinkObj.value
-        while (ShortLink.findOne({ shortenLink: shortenCode === false})) {
-          return ShortLink.create({ inputLink, shortenCode })
-            .then(() => res.render('index', { shortenLinkObj, inputLink }))
-            .catch(error => console.log(error))
-        }
-      }
+        if (!shortenLinkObj.error) {
+          shortenLinkObj.value = hostName + shortenLinkObj.value
+        
+          while (ShortLink.findOne({ shortenLink: shortenCode === false})) {
+            return ShortLink.create({ inputLink, shortenCode })
+              .then(() => res.render('index', { shortenLinkObj, inputLink }))
+              .catch(error => console.log(error))
+          }
+        } 
+          res.render('index', { shortenLinkObj, inputLink })
+      } 
     })
 })
 
