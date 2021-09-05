@@ -27,9 +27,14 @@ function shortLinkGenerator(link) {
   return shortenCode
 } 
 
+function getHostname(req) {
+  return `${req.protocol}://${req.get('host')}/`
+}
+
 const helper = {
-  shortLinkGenerator: shortLinkGenerator,
-  judgeLink: judgeLink
+  shortLinkGenerator,
+  judgeLink,
+  getHostname
 }
 
 
