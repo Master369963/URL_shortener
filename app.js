@@ -1,10 +1,8 @@
 const express = require('express')
 const exhbs = require('express-handlebars')
 const mongoose = require('mongoose')
-const helper = require('./shortlink_generator')
 const ShortLink = require('./models/linkShortener')
 const routes = require('./routes')
-const hostName = 'http://localhost:3000/'
 
 const app = express()
 const port = 3000

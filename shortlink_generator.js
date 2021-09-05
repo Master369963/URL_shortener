@@ -16,7 +16,6 @@ function shortLinkGenerator(link) {
   const library = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   const splitLibrary = library.split('')
   let shortenCode = ''
-
   for ( let i = 0; i < 5 ; i++) {
     const index = Math.floor(Math.random() * splitLibrary.length)
     shortenCode += splitLibrary[index]

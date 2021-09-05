@@ -18,15 +18,16 @@
       
       {{!-- 輸入的連結無效時，會跳出提醒 --}}
       {{#if shortenLinkObj.error}}
+        {{shortenLink}}
         <div class="alert alert-info col-md-8 mx-auto d-flex justify-content-between" role="alert">
-          <span class="text-danger">{{shortenLinkObj.value}}</span>
+          <span class="text-danger">{{shortenLink}}</span>
         </div>
       
       {{!-- 輸入有效的連結 --}}
       {{else}}
         {{#if shortenLinkObj.value}}
           <div class="alert alert-info col-md-8 mx-auto d-flex justify-content-between" role="alert">
-            <span class="mr-6 align-buttom">Shorten link is:</span> <a id="shortenLink" href="{{inputLink}}">{{ shortenLink }}</a>            
+            <span class="mr-6 align-buttom">Shorten link is:</span> <a id="shortenLink" href="{{inputLink}}">{{ shortenLinkObj.value }}</a>            
             <button onclick="copyLink()" class="btn btn-danger ml-2" type="button">Copy</button>
           </div>
         {{/if}}

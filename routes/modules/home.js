@@ -1,39 +1,43 @@
 const express = require('express')
 const router = express.Router()
-const ShortLink = require('./models/linkShortener')
+const ShortLink = require('../../models/linkShortener')
+const helper = require('../../shortlink_generator')
+const hostName = 'http://localhost:3000/'
 
 router.get('/', (req, res) => {
   res.render('index')
 })
 
+
 router.post('/', (req, res) => {
   const inputLink = req.body.URLlink
-
-  ShortLink.find()
+  ShortLink.findOne({ inputLink: inputLink})
     .lean()
-    .then(inputLinks => {
-      targetURL = inputLinks.filter(eachLink => eachLink.inputLink === inputLink)
-      if (targetURL.length === 1) {
+    .then(function (obj) {
+      if (obj) {
         let shortenLinkObj = {
           error: false,
-          value: targetURL[0].shortenLink
+          value: hostName + obj.shortenCode
         }
         return res.render('index', { shortenLinkObj, inputLink })
-
       } else {
         const shortenLinkObj = helper.judgeLink(inputLink)
-        const shortenLink = hostName + shortenLinkObj.value
-
-        return ShortLink.create({ inputLink, shortenLink })
-          .then(() => res.render('index', { shortenLinkObj, inputLink, shortenLink }))
-          .catch(error => console.log(error))
+        const shortenCode = shortenLinkObj.value
+        shortenLinkObj.value = hostName + shortenLinkObj.value
+        while (ShortLink.findOne({ shortenLink: shortenCode === false})) {
+          return ShortLink.create({ inputLink, shortenCode })
+            .then(() => res.render('index', { shortenLinkObj, inputLink }))
+            .catch(error => console.log(error))
+        }
       }
     })
 })
 
 router.get('/:shortenLink', (req, res) => {
-  const link = hostName + (req.params.shortenLink)
-  ShortLink.findOne({ shortenLink: link })
+  const code = req.params.shortenLink
+  const fullLink = hostName + (req.params.shortenLink)
+
+  ShortLink.findOne({ shortenCode: code })
     .then(function (obj) {
       res.redirect(obj.inputLink)
     })
