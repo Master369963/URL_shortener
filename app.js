@@ -26,7 +26,7 @@ app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
-
+app.enable('trust proxy')
     
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
