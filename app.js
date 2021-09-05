@@ -5,7 +5,7 @@ const ShortLink = require('./models/linkShortener')
 const routes = require('./routes')
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 
 mongoose.connect('mongodb://localhost/linkShortener', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -25,7 +25,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 
     
-
-app.listen(port, () => {
-  console.log('App is running!')
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })
