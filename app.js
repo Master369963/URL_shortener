@@ -8,7 +8,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 
-mongoose.connect('mongodb://localhost/linkShortener', { useNewUrlParser: true, useUnifiedTopology: true })
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/linkShortener'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 db.on('error', () => {
