@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000
 
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/linkShortener'
+console.log("[DEBUG] Connection string:", MONGODB_URI)
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
