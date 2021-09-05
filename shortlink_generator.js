@@ -1,7 +1,5 @@
-const ShortLink = require('./models/linkShortener')
-
 function judgeLink(link) {
-  if ((link.length === 0) || (link.includes('https://') == ! true)) {
+  if ((link.length === 0) || (link.includes('https://') ==! true)) {
     return {
       error: true,
       value:'Please input a valid link.'
@@ -17,13 +15,14 @@ function judgeLink(link) {
 function shortLinkGenerator(link) {
   const library = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   const splitLibrary = library.split('')
-  let shortenLink = 'https://aga-url-shortener.herokuapp.com/'
+  let shortenCode = ''
 
   for ( let i = 0; i < 5 ; i++) {
     const index = Math.floor(Math.random() * splitLibrary.length)
-    shortenLink += splitLibrary[index]
+    shortenCode += splitLibrary[index]
   }
-  return shortenLink
+  
+  return shortenCode
 } 
 
 const helper = {
@@ -31,8 +30,5 @@ const helper = {
   judgeLink: judgeLink
 }
 
-// function checkLink (inputLlink) {
-//   if ()
-// }
 
 module.exports = helper
